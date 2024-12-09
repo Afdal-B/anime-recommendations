@@ -128,3 +128,150 @@ def get_top_animes(limit: int = 100):
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/animes/search")
+def search_animes(query: str):
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Requête pour rechercher des animes par nom
+        cursor.execute("""
+            SELECT anime_id, name, image_url, synopsis, score
+            FROM animes
+            WHERE name LIKE ?
+        """, (f"%{query}%",))
+        
+        results = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        
+        # Vérifier si des résultats ont été trouvés
+        if not results:
+            raise HTTPException(status_code=404, detail="Aucun anime trouvé.")
+        
+        return [
+            {
+                "anime_id": anime[0],
+                "name": anime[1],
+                "image_url": anime[2],
+                "synopsis": anime[3],
+                "score": anime[4]
+            }
+            for anime in results
+        ]
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, posexplode, sqrt, sum as spark_sum, pow, lit
+from pyspark.sql.window import Window
+from pyspark.sql import Row
+from fastapi import HTTPException
+
+def get_anime_info(anime_id: int):
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Requête pour obtenir les informations d'un anime par son ID
+        cursor.execute("""
+            SELECT anime_id, name, image_url, synopsis, score
+            FROM animes
+            WHERE anime_id = ?
+        """, (anime_id,))
+        
+        result = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        
+        # Vérifier si l'anime a été trouvé
+        if not result:
+            raise HTTPException(status_code=404, detail="Anime non trouvé.")
+        
+        return {
+            "anime_id": result[0],
+            "name": result[1],
+            "image_url": result[2],
+            "synopsis": result[3],
+            "score": result[4]
+        }
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/animes/similar/{anime_id}")
+def get_similar_animes(anime_id: int, top_n: int = 5):
+    try:
+        # Charger le modèle ALS
+        model = load_model()
+        spark = SparkSession.builder.getOrCreate()
+        
+        # Obtenir les caractéristiques de l'anime donné
+        anime_vector = (
+            model.itemFactors.filter(col("id") == anime_id).collect()
+        )
+        
+        if not anime_vector:
+            raise HTTPException(status_code=404, detail="Anime non trouvé.")
+        
+        # Récupérer le vecteur de l'anime sous forme de liste
+        anime_vector_values = anime_vector[0]["features"]
+        
+        # Créer un DataFrame pour l'anime cible avec ses indices
+        anime_vector_df = spark.createDataFrame(
+            [(i, val) for i, val in enumerate(anime_vector_values)],
+            schema=["index", "target_feature"]
+        )
+        
+        # Exploser le tableau de chaque item dans le modèle pour avoir des éléments scalaires
+        exploded_item_factors = (
+            model.itemFactors
+            .select(col("id"), posexplode(col("features")).alias("index", "item_feature"))
+        )
+        
+        # Joindre sur l'index pour associer chaque élément avec l'élément correspondant de l'anime cible
+        joined_df = exploded_item_factors.join(anime_vector_df, on="index")
+        
+        # Calculer le produit scalaire et les normes
+        similarity_df = (
+            joined_df.groupBy("id")
+            .agg(
+                spark_sum(col("item_feature") * col("target_feature")).alias("dot_product"),
+                sqrt(spark_sum(pow(col("item_feature"), 2))).alias("norm_item"),
+                sqrt(spark_sum(pow(col("target_feature"), 2))).alias("norm_target")
+            )
+            .withColumn(
+                "similarity",
+                col("dot_product") / (col("norm_item") * col("norm_target"))
+            )
+        )
+        
+        # Trier par similarité et récupérer les meilleurs résultats
+        similar_animes = (
+            similarity_df
+            .select("id", "similarity")
+            .where(col("id") != anime_id)  # Exclure l'anime lui-même
+            .orderBy(col("similarity").desc())
+            .limit(top_n)
+        )
+        
+        results = similar_animes.collect()
+        
+        # Récupérer les informations de l'anime
+        anime_details = []
+        for row in results:
+            anime_info = get_anime_info(row.id)  # Fonction fictive pour récupérer les détails de l'anime
+            anime_details.append({
+                "anime_id": row.id,
+                "similarity": row.similarity,
+                "name": anime_info["name"],
+                "synopsis": anime_info["synopsis"],
+                "image_url": anime_info["image_url"]
+            })
+        
+        return anime_details
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur interne : {str(e)}")

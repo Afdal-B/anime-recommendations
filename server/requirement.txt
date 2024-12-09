@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-pyspark
-numpy
-pandas
-setuptools
-pyodbc
