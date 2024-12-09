@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.recommendation.ALSModel","timestamp":1733062551179,"sparkVersion":"3.5.3","uid":"ALS_9ed4e101ffe5","paramMap":{"blockSize":4096,"userCol":"user_id","coldStartStrategy":"drop","itemCol":"anime_id"},"defaultParamMap":{"blockSize":4096,"userCol":"user","coldStartStrategy":"nan","itemCol":"item","predictionCol":"prediction"},"rank":10}
