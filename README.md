@@ -42,4 +42,3 @@ Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un mod�
 
 ## Démo Vidéo
 <video src="demo/demo.mov" controls="controls" style="max-width: 100%;"></video>
-[![Regardez la vidéo](https://raw.githubusercontent.com/Afdal-B/anime-recommendations/main/demo/demo.png)](https://raw.githubusercontent.com/Afdal-B/anime-recommendations/main/demo/demo.mov)
