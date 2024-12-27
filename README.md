@@ -44,4 +44,4 @@ Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un mod�
 
 Voici une démo vidéo de l'application :
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ZPPrOeD00sM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Regardez la vidéo](https://raw.githubusercontent.com/Afdal-B/anime-recommendations/main/demo/demo.png)](https://raw.githubusercontent.com/Afdal-B/anime-recommendations/main/demo/demo.mov)
