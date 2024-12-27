@@ -4,7 +4,10 @@
 ![FastAPI](https://img.shields.io/badge/-FastAPI-009688?logo=fastapi&logoColor=white)
 ![Uvicorn](https://img.shields.io/badge/-Uvicorn-000000?logo=uvicorn&logoColor=white)
 ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-0089D6?logo=microsoft-azure&logoColor=white)
+![Azure Blob Storage](https://img.shields.io/badge/Azure%20Blob%20Storage-0089D6?logo=microsoft-azure&logoColor=white)
+![Azure Web App](https://img.shields.io/badge/Azure%20Web%20App-0078D4?logo=microsoft-azure&logoColor=white)
+![Azure Machine Learning](https://img.shields.io/badge/Azure%20Machine%20Learning-0078D4?logo=azure-machine-learning&logoColor=white)
+![Azure SQL Database](https://img.shields.io/badge/Azure%20SQL%20Database-000000?logo=azure-sql-database&logoColor=white)
 ![PySpark](https://img.shields.io/badge/-PySpark-E25A1C?logo=apache-spark&logoColor=white)
 
 Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un modèle de filtrage collaboratif pour recommander des animes en fonction des préférences de l'utilisateur.
