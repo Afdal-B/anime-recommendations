@@ -2,6 +2,13 @@
 
 Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un modèle de filtrage collaboratif pour recommander des animes en fonction des préférences de l'utilisateur.
 
+## Technologies Utilisées
+
+[![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+![FastAPI](https://img.shields.io/badge/-FastAPI-009688?logo=fastapi&logoColor=white)
+![Uvicorn](https://img.shields.io/badge/-Uvicorn-000000?logo=uvicorn&logoColor=white)
+![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white)
+
 ## Fonctionnalités
 
 - Recherche d'animes par nom
@@ -43,4 +50,3 @@ Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un mod�
 ## Démo Vidéo
 
 https://github.com/user-attachments/assets/5e116876-fa0f-48ca-8b05-49ef5f62f7de
-
