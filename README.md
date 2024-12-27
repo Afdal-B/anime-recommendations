@@ -41,7 +41,5 @@ Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un mod�
 3. Ouvrez votre navigateur et accédez à `http://localhost:8000` pour l'API et `http://localhost:3000` pour l'interface utilisateur.
 
 ## Démo Vidéo
-
-Voici une démo vidéo de l'application :
-
+<video src="demo/demo.mov" controls="controls" style="max-width: 100%;"></video>
 [![Regardez la vidéo](https://raw.githubusercontent.com/Afdal-B/anime-recommendations/main/demo/demo.png)](https://raw.githubusercontent.com/Afdal-B/anime-recommendations/main/demo/demo.mov)
