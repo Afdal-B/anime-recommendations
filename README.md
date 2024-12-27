@@ -41,4 +41,5 @@ Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un mod�
 3. Ouvrez votre navigateur et accédez à `http://localhost:8000` pour l'API et `http://localhost:3000` pour l'interface utilisateur.
 
 ## Démo Vidéo
-<video src="demo/demo.mov" controls="controls" style="max-width: 100%;"></video>
+[Voir la démonstration (video)](demo/demo.mov)
+
