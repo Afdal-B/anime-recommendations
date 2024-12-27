@@ -18,6 +18,10 @@ Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un mod�
 - Recommandations d'animes similaires
 - Noter des animés (enrichir la base d'entrainement)
 
+## Architecture
+<img width="647" alt="Screenshot 2024-12-27 at 17 39 41" src="https://github.com/user-attachments/assets/6eaa3921-2983-4f0e-9789-be1ab8e24fcd" />
+
+
 ## Installation
 
 1. Clonez le dépôt :
