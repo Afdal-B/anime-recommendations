@@ -7,7 +7,7 @@
 ![Azure SQL Database](https://img.shields.io/badge/-Azure-SQL-Database-000000?logo=Azure-SQL-Database&logoColor=white)
 ![PySpark](https://img.shields.io/badge/-PySpark-E25A1C?logo=apache-spark&logoColor=white)
 ![Azure ML](https://img.shields.io/badge/-Azure-ML-0078D4?logo=azure-machine-learning&logoColor=white)
-![Azure Blob Storage](https://img.shields.io/badge/-Azure-Blob-Storage-0089D6?logo=microsoft-azure&logoColor=white)
+![Azure Blob Storage](https://img.shields.io/badge/-microsoft-azure-0089D6?logo=microsoft-azure&logoColor=white)
 
 Bienvenue dans le projet de recommandations d'animes ! Ce projet utilise un modèle de filtrage collaboratif pour recommander des animes en fonction des préférences de l'utilisateur.
 
