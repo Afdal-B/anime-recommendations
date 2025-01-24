@@ -12,6 +12,11 @@
 
 Welcome to the anime recommendations project! This project uses a collaborative filtering model to recommend animes based on user preferences.
 
+
+## Video Demo
+
+https://github.com/user-attachments/assets/5e116876-fa0f-48ca-8b05-49ef5f62f7de
+
 ## Features
 
 - Search for animes by name
@@ -54,6 +59,3 @@ Welcome to the anime recommendations project! This project uses a collaborative 
    ```
 3. Open your browser and go to `http://localhost:8000` for the API and `http://localhost:3000` for the user interface.
 
-## Video Demo
-
-https://github.com/user-attachments/assets/5e116876-fa0f-48ca-8b05-49ef5f62f7de
