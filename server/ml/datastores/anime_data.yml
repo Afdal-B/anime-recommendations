@@ -1,0 +1,7 @@
+# Conteneur des notes (ratings.csv + new/). Sans identifiants : accès par identité managée.
+# account_name est fourni par le script de déploiement (--set account_name=...)
+$schema: https://azuremlschemas.azureedge.net/latest/azureBlob.schema.json
+name: anime_data
+type: azure_blob
+account_name: placeholder
+container_name: data

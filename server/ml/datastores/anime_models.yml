@@ -1,0 +1,6 @@
+# Conteneur des modèles entraînés (als_model/<version>/)
+$schema: https://azuremlschemas.azureedge.net/latest/azureBlob.schema.json
+name: anime_models
+type: azure_blob
+account_name: placeholder
+container_name: models

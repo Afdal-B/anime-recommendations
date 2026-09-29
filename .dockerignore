@@ -1,0 +1,13 @@
+.git
+**/node_modules
+**/__pycache__
+**/.env
+**/.DS_Store
+client/build
+notebooks
+server/models/zipped
+server/.vscode
+server/dev.sqlite3
+server/ml
+server/data/user-filtered.csv
+server/data/ratings.csv

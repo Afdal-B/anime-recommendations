@@ -1,0 +1,10 @@
+# Réentraînement automatique chaque lundi à 3 h (heure de Paris).
+# Désactivé par défaut : créé seulement avec TRAINING_SCHEDULE=1 ./deploy/azure-deploy.sh
+$schema: https://azuremlschemas.azureedge.net/latest/schedule.schema.json
+name: anime-reco-weekly-training
+display_name: Réentraînement hebdomadaire
+trigger:
+  type: cron
+  expression: "0 3 * * 1"
+  time_zone: "Romance Standard Time"
+create_job: ./train-pipeline.yml
