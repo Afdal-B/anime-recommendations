@@ -1,17 +1,16 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 
-# Schéma pour une requête utilisateur
-class UserRequest(BaseModel):
+# Connexion par pseudo : l'utilisateur est retrouvé s'il existe, créé sinon
+class LoginRequest(BaseModel):
+    username: str = Field(min_length=1, max_length=50)
+
+class UserResponse(BaseModel):
     user_id: int
     username: str
-
-# Schéma pour une réponse de recommandations
-class RecommendationResponse(BaseModel):
-    user_id: int
-    recommendations: List[int]  # Liste des anime_id recommandés
+    created: bool
 
 class RatingRequest(BaseModel):
     user_id: int
     anime_id: int
-    rating: int
+    rating: int = Field(ge=1, le=10)
