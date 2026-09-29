@@ -3,7 +3,7 @@
 #   - Azure SQL (offre gratuite)               données de l'application
 #   - Blob Storage                             notes d'entraînement + modèles
 #   - Container Registry + Container Apps      application (React + FastAPI)
-#   - Azure Machine Learning                   réentraînement planifié du modèle
+#   - Azure Machine Learning                   entraînement du modèle
 # Prérequis : Azure CLI connecté (az login). Aucun Docker local requis (build dans ACR).
 #
 # Usage :
