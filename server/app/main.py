@@ -67,7 +67,6 @@ if allowed_origins:
         allow_headers=["*"],
     )
 
-# Inclure les routes
 app.include_router(router)
 
 # Servir le front React : fichiers statiques puis index.html pour les routes du client
@@ -83,7 +82,6 @@ if os.path.isdir(STATIC_DIR):
         return FileResponse(os.path.join(STATIC_DIR, "index.html"))
 
 
-# Commande pour lancer FastAPI (uvicorn)
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

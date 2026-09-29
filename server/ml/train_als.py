@@ -53,7 +53,7 @@ def train(ratings, rank=10):
         ratingCol="rating",
         rank=rank,
         regParam=0.1,              # Valeur par défaut de Spark ; reprise par le fold-in de l'API
-        nonnegative=True,          # Assurer que les prédictions sont positives
+        nonnegative=True,          # Facteurs positifs ou nuls (contrainte reprise par le fold-in)
         implicitPrefs=False,       # On utilise des notes explicites
         coldStartStrategy="drop",  # Supprimer les prédictions sur données inconnues
     )

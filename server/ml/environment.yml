@@ -1,5 +1,5 @@
 # Environnement Azure ML de l'entraînement : PySpark a besoin d'une JVM
-# (mêmes versions que requirements.txt, utilisé pour l'entraînement en local)
+# (mêmes versions que requirements.txt, qui sert à l'entraînement en local)
 name: anime-reco-train
 channels:
   - conda-forge
