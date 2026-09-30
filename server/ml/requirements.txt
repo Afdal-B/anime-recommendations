@@ -1,0 +1,4 @@
+# Dépendances de l'entraînement, non nécessaires pour servir l'API
+pandas==2.2.3
+pyarrow==18.1.0
+pyspark==3.5.3

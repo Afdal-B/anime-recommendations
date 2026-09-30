@@ -1,0 +1,30 @@
+# Pipeline Azure ML : entraîne le modèle ALS sur les notes du conteneur "data"
+# et écrit le résultat dans le conteneur "models", dans un dossier propre à l'exécution.
+# Lancé à la demande par deploy/retrain.sh (ou par schedule.yml si la planification est activée).
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+display_name: Entraînement ALS
+experiment_name: anime-recommendation
+settings:
+  default_compute: azureml:train-cluster
+jobs:
+  train:
+    type: command
+    code: .
+    command: python train_als.py --ratings ${{inputs.ratings}} --output ${{outputs.model}}
+    inputs:
+      ratings:
+        type: uri_folder
+        path: azureml://datastores/anime_data/paths/
+        mode: ro_mount
+    outputs:
+      model:
+        type: uri_folder
+        path: azureml://datastores/anime_models/paths/als_model/${{name}}/
+        mode: rw_mount
+    environment:
+      image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+      conda_file: environment.yml
+    # Accès au stockage avec l'identité managée du cluster (pas de clé)
+    identity:
+      type: managed
